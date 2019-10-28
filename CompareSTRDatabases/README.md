@@ -117,8 +117,7 @@ ZIC2|11285244|13|100637703|100637747|GCN|25
 
 + Repeats not within the reference include:  
 
----Non-Reference---
-Gene|PMID || Source|Chrom|Start (0-based)|End (1-based)|Repeat Motif|Pathogenic Lower Bound
+Gene|PMID/Source|Chrom|Start (0-based)|End (1-based)|Repeat Motif|Pathogenic Lower Bound
 BEAN1|19878914|16|66,524,302|66,524,369|(TGGAA)exp (TAGAA)n (TAAAA TAGAA)n|500
 DAB1|28686858|1|57,832,716|57,832,790|(ATTTT)n (ATTTC)exp (ATTTT)n|31
 RAPGEF2|29507423|4|160,263,679|160,263,768|(TTTTA)exp (TTTCA)exp (TTTTA)12|
