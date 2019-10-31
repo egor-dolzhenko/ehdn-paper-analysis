@@ -1,0 +1,132 @@
+import os
+
+wd='../../scratch/'
+tools_dir='../../tools/'
+input_dir='../../input/'
+
+sizes = list(range(10, 301, 10))
+replicates = list(range(1, 25 + 1))
+
+flank_len = 2500
+
+rule all:
+        input:
+                expand(wd + '{size}/{replicate}.str_profile.json', size=sizes, replicate=replicates)
+
+
+rule eh_denovo:
+    input:
+        expand(wd + '{{size}}/{replicate}.bam', replicate=replicates)
+    output:
+        expand(wd + '{{size}}/{replicate}.str_profile.json', replicate=replicates)
+    params:
+        size = '{size}', 
+        flank_len = flank_len,
+        reps=replicates,
+        wd=wd
+    run:
+        template = '{{tools_dir}}/ExpansionHunterDenovo/build/ExpansionHunterDenovo profile \
+                        --reads {bam} --reference {{input_dir}}/human_g1k_v37/human_g1k_v37.fasta \
+                        --output-prefix {prefix}'
+
+        for rep in params.reps:
+            prefix = '/'.join([params.wd, params.size, str(rep)])
+            bam = prefix + '.bam'
+
+            command = template.format(bam=bam, prefix=prefix)
+            shell(command)
+
+
+rule align_bwa:
+    input:
+        expand(wd + '{{size}}/{replicate}.r{read_num}.fq', replicate=replicates, read_num=[1, 2])
+    output:
+        expand(wd + '{{size}}/{replicate}.bam', replicate=replicates)
+    params:
+        size = '{size}', 
+        flank_len = flank_len,
+        reps=replicates,
+        wd=wd
+    run:
+        template = '{{tools_dir}}/bwa/bwa mem -M -t 1 \
+                        {{input_dir}}/human_g1k_v37/human_g1k_v37.fasta {r1} {r2} \
+	            | samtools view -bS - > {bam}'
+
+        for rep in params.reps:
+            prefix = '/'.join([params.wd, params.size, str(rep)])
+            read1 = prefix + '.r1.fq'
+            read2 = prefix + '.r2.fq'
+            bam = prefix + '.bam'
+
+            command = template.format(r1=read1, r2=read2, bam=bam)
+            shell(command)
+
+
+rule simulate_reads:
+    input:
+        expand(wd + '{{size}}/{replicate}.fa', replicate=replicates)
+    output:
+        expand(wd + '{{size}}/{replicate}.r{read_num}.fq', replicate=replicates, read_num=[1, 2])
+    params:
+        size = '{size}', 
+        flank_len = flank_len,
+        reps=replicates,
+        wd=wd
+    run:
+        import random
+
+        ref_len = int(params.size) + 2 * int(flank_len)
+        num_fragments = (20 / 150) * (ref_len - 150) / 2
+       
+        template = '''
+                   {{tools_dir}}/wgsim/wgsim -S {seed} -N {num_frags} -e 0.000 \
+                        -d 450 -R 0.00 -1 150 -2 150 {ref} {r1}.tmp {r2}.tmp
+                        
+                    awk ' /222222222/ {{{{ gsub("2", "I"); print $0; next }}}} {{{{ print }}}} ' {r1}.tmp > {r1}
+                    awk ' /222222222/ {{{{ gsub("2", "I"); print $0; next }}}} {{{{ print }}}} ' {r2}.tmp > {r2}
+
+                    rm {r1}.tmp {r2}.tmp
+                   '''
+
+
+        for rep in params.reps:
+            prefix = '/'.join([params.wd, params.size, str(rep)])
+            ref = prefix + '.fa'
+            read1 = prefix + '.r1.fq'
+            read2 = prefix + '.r2.fq'
+
+            seed = random.randint(1, 250)
+
+            command = template.format(seed=seed, num_frags=num_fragments, ref=ref, r1=read1, r2=read2)
+            print(command)
+            shell(command)
+        
+
+
+rule simulate_reference:
+    output:
+        expand(wd + '{{size}}/{replicate}.fa', replicate=replicates)
+    params:
+        reps=replicates,
+        ref_path=input_dir + '/human_g1k_v37/human_g1k_v37.fasta',
+        flank_len=flank_len,
+        size='{size}',
+        wd=wd
+    run:
+        import pysam
+
+        ref = pysam.FastaFile(params.ref_path)
+        rep_chrom, rep_start, rep_end = '4', 3076604, 3076660
+        left_flank = ref.fetch(rep_chrom, rep_start - params.flank_len, rep_start).upper()
+        right_flank = ref.fetch(rep_chrom, rep_end, rep_end + params.flank_len).upper()
+
+        size = int(params.size)
+        repeat_unit = 'CAG'
+        repeat_length_bp = repeat_unit * int(size)
+
+        for replicate in params.reps:
+            ref_seq = left_flank + (repeat_unit * size) + right_flank
+            ref_id = '{}{}-{}'.format(repeat_unit, size, replicate)
+            with open(params.wd + '{}/{}.fa'.format(size, replicate), 'w') as ref_file:
+                print('>{}'.format(ref_id), file=ref_file)
+                print(ref_seq, file=ref_file)
