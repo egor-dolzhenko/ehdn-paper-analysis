@@ -1,0 +1,38 @@
+# GangSTR PBS script
+#
+#PBS -N GangSTR_Diversity
+
+#PBS -t 0-149       # 150 BAM files
+#PBS -V
+
+#PBS -l nodes=1:ppn=1
+#PBS -l mem=3gb
+#PBS -l walltime=20:00:00
+
+#PBS -m a
+#PBS -M bennett.ma@wehi.edu.au
+
+
+BAM_FILES=( /stornext/HPCScratch/lab_bahlo/Illumina_Polaris/Diversity/*.bam )
+
+OUTPUT_DIR=/stornext/HPCScratch/lab_bahlo/Illumina_Polaris/data/GangSTR_v2.4.2_ver13.1/Diversity
+
+REGIONS=/stornext/HPCScratch/lab_bahlo/Illumina_Polaris/data/GangSTR_v2.4.2_ver13.1/hs37_ver13_1.bed
+
+REFERENCE=/stornext/HPCScratch/lab_bahlo/Illumina_Polaris/reference/Homo_sapiens/Ensembl/GRCh37/Sequence/WholeGenomeFasta/genome.fa
+
+# ---------------------------------------------------------------------------------------
+
+GANGSTR=/stornext/HPCScratch/lab_bahlo/Illumina_Polaris/GangSTR-2.4.2/bin/GangSTR
+
+mkdir -p $OUTPUT_DIR
+
+# Run GangSTR
+
+BAM="${BAM_FILES[$PBS_ARRAYID]}"
+
+BASE=$(basename $BAM ".bam")
+
+$GANGSTR --bam $BAM --ref $REFERENCE --regions $REGIONS --out $OUTPUT_DIR/$BASE
+gzip $OUTPUT_DIR/$BASE.vcf
+
