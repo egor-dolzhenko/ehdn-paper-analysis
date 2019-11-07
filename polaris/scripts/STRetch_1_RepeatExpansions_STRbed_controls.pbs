@@ -1,0 +1,37 @@
+# STRetch PBS script
+#
+#PBS -N STRetch_RepeatExpansions
+
+#PBS -t 0-119       # 120 BAM files
+#PBS -V
+
+#PBS -l nodes=1:ppn=10
+#PBS -l mem=40gb
+#PBS -l walltime=36:00:00
+
+#PBS -m a
+#PBS -M bennett.ma@wehi.edu.au
+
+
+BAM_FILES=( /stornext/HPCScratch/lab_bahlo/Illumina_Polaris/RepeatExpansions/*.bam )
+
+OUTPUT_DIR=/stornext/HPCScratch/lab_bahlo/Illumina_Polaris/data/STRetch/RepeatExpansions/
+
+# ---------------------------------------------------------------------------------------
+
+STRETCH_DIR=/stornext/HPCScratch/lab_bahlo/Illumina_Polaris/STRetch/
+
+# Run STRetch
+
+BAM="${BAM_FILES[$PBS_ARRAYID]}"
+
+BASE=$(basename $BAM ".bam")
+
+WORK_DIR=$OUTPUT_DIR/$BASE
+mkdir -p $WORK_DIR
+cd $WORK_DIR
+
+$STRETCH_DIR/tools/bin/bpipe run \
+    -p input_regions=$STRETCH_DIR/reference-data/hg19.simpleRepeat_period1-6_dedup.sorted.bed \
+    $STRETCH_DIR/pipelines/STRetch_wgs_bam_pipeline_controls.groovy $BAM
+
