@@ -9,7 +9,7 @@ TEMPLATE=$BASEDIR/scripts/template_EHdn_0.8.6.sh
 # Diversity cohort
 mkdir -p $PBSDIR/diversity
 echo "cd $PBSDIR/diversity" > $PBSDIR/diversity_submit.sh
-for BAM in $(ls $BASEDIR/bam_isaac/diversity/*.bam)
+for BAM in $(ls $BASEDIR/bam_bwamem/diversity/*.bam)
 do
     BASE=$(basename $BAM ".bam")
     
@@ -23,7 +23,7 @@ done
 # Create pbs scripts to run RepeatExpansions cohort
 mkdir -p $PBSDIR/repeatexpansions
 echo "cd $PBSDIR/repeatexpansions" > $PBSDIR/repeatexpansions_submit.sh
-for BAM in $(ls $BASEDIR/bam_isaac/repeatexpansions/*.bam)
+for BAM in $(ls $BASEDIR/bam_bwamem/repeatexpansions/*.bam)
 do
     BASE=$(basename $BAM ".bam")
     
