@@ -2,7 +2,7 @@
 
 #PBS -l nodes=1:ppn=10
 #PBS -l mem=40gb
-#PBS -l walltime=36:00:00
+#PBS -l walltime=20:00:00
 
 #PBS -m ae
 #PBS -M bennett.ma@wehi.edu.au
