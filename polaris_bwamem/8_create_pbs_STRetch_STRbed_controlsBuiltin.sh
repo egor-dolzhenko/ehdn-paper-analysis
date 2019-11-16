@@ -1,4 +1,4 @@
-# Create pbs scripts to run GangSTR on Illumina Polaris cohort
+# Create pbs scripts to run STRetch on Illumina Polaris cohort
 
 BASEDIR=/wehisan/bioinf/lab_bahlo/users/bennett.ma/projects/EHdn/align_bwamem_polaris
 

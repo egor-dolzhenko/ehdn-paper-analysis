@@ -29,9 +29,6 @@ cd $WORK_DIR
 
 
 # Run STRetch
-$STRETCH_DIR/tools/bin/bpipe run -p input_regions=$STRETCH_DIR/reference-data/hg19.simpleRepeat_period1-6_dedup.sorted.bed /wehisan/bioinf/lab_bahlo/users/bennett.ma/projects/EHdn/align_bwamem_polaris/scripts/STRetch_pipeline_STRbed_controlsBuiltin.groovy $BAM
-
-
-
+$STRETCH_DIR/tools/bin/bpipe run -p input_regions=$STRETCH_DIR/reference-data/GRCh37.simpleRepeat_period1-6_dedup.sorted.bed /wehisan/bioinf/lab_bahlo/users/bennett.ma/projects/EHdn/align_bwamem_polaris/scripts/STRetch_pipeline_STRbed_controlsBuiltin.groovy $BAM
 
 

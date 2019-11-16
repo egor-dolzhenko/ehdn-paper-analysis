@@ -11,7 +11,6 @@ curl -L https://github.com/lh3/bwa/releases/download/v0.7.17/bwa-0.7.17.tar.bz2 
 tar -jxvf bwa-0.7.17.tar.bz2
 cd bwa-0.7.17
 make
-cd /scripts
 
 
 ## Reference genome
@@ -31,8 +30,8 @@ curl -L https://github.com/ssadedin/bazam/releases/download/1.0.1/bazam.jar > ba
 
 ## STRetch (version matching install date Phil quotes in EHdn manuscript)
 git clone https://github.com/Oshlack/STRetch.git
-cd STRetch
+cd $BASEDIR/bin/STRetch
 git checkout 5405902
 bash install.sh
-
+sed s/chr// reference-data/hg19.simpleRepeat_period1-6_dedup.sorted.bed > reference-data/GRCh37.simpleRepeat_period1-6_dedup.sorted.bed
 

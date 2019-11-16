@@ -2,7 +2,7 @@
 
 #PBS -l nodes=1:ppn=1
 #PBS -l mem=4gb
-#PBS -l walltime=20:00:00
+#PBS -l walltime=24:00:00
 
 #PBS -m ae
 #PBS -M bennett.ma@wehi.edu.au
@@ -28,7 +28,27 @@ BASE=$(basename $BAM ".bam")
 
 mkdir -p $OUTDIR
 
+module load picard-tools/2.20.2
+module load samtools/1.9
+
+BAM_READGROUP=$OUTDIR/${BASE}_fix_readgroups.bam
+
+AddOrReplaceReadGroups \
+    I=$BAM \
+    O=$BAM_READGROUP \
+    RGID=$BASE \
+    RGLB="Library" \
+    RGPL="Platform" \
+    RGPU="PlatformUnit" \
+    RGSM=$BASE
+
+samtools index $BAM_READGROUP
+
+
 # Run GangSTR
-$GANGSTR --bam $BAM --ref $REF --regions $REGIONS --out $OUTDIR/$BASE
+$GANGSTR --bam $BAM_READGROUP --ref $REF --regions $REGIONS --out $OUTDIR/$BASE
+
+rm $BAM_READGROUP
 gzip $OUTDIR/$BASE.vcf
+
 
