@@ -1,0 +1,169 @@
+{
+    "loci": [
+        {
+            "alleles": {
+                "reference": "(LF)(RU1){500}(RU2){50}(RF)",
+                "allele1": "(LF)(RU1){500}(RU2){50}(RF)",
+                "allele2": "(LF)(RU1){500}(RU2){50}(RF)"
+            },
+            "sequences": {
+                "RU1": "TGGAA",
+                "RU2": "TAAAA",
+                "LF": "16:66522301-66524301",
+                "RF": "16:66524369-66526369"
+            },
+            "params": {
+                "identifier": "BEAN1"
+            }
+        },
+        {
+            "alleles": {
+                "reference": "(LF)(RU1){60}(RU2){31}(RU3){58}(RF)",
+                "allele1": "(LF)(RU1){60}(RU2){31}(RU3){58}(RF)",
+                "allele2": "(LF)(RU1){60}(RU2){31}(RU3){58}(RF)"
+            },
+            "sequences": {
+                "RU1": "ATTTT",
+                "RU2": "ATTTC",
+                "RU3": "ATTTT",
+                "LF": "1:57830715-57832715",
+                "RF": "1:57832790-57834790"
+            },
+            "params": {
+                "identifier": "DAB1"
+            }
+        },
+        {
+            "alleles": {
+                "reference": "(LF)(RU1){200}(RU2){500}(RU3){12}(RF)",
+                "allele1": "(LF)(RU1){200}(RU2){500}(RU3){12}(RF)",
+                "allele2": "(LF)(RU1){200}(RU2){500}(RU3){12}(RF)"
+            },
+            "sequences": {
+                "RU1": "TTTTA",
+                "RU2": "TTTCA",
+                "RU3": "TTTTA",
+                "LF": "4:160261678-160263678",
+                "RF": "4:160263768-160265768"
+            },
+            "params": {
+                "identifier": "RAPGEF2"
+            }
+        },
+        {
+            "alleles": {
+                "reference": "(LF)(RU1){400}(RF)",
+                "allele1": "(LF)(RU1){400}(RF)",
+                "allele2": "(LF)(RU1){400}(RF)"
+            },
+            "sequences": {
+                "RU1": "AAGGG",
+                "LF": "4:39348044-39350044",
+                "RF": "4:39350099-39352099"
+            },
+            "params": {
+                "identifier": "RFC1"
+            }
+        },
+        {
+            "alleles": {
+                "reference": "(LF)(RU1){104}(RU2){66}(RF)",
+                "allele1": "(LF)(RU1){104}(RU2){66}(RF)",
+                "allele2": "(LF)(RU1){104}(RU2){66}(RF)"
+            },
+            "sequences": {
+                "RU1": "TTTTA",
+                "RU2": "TTTCA",
+                "LF": "8:119377054-119379054",
+                "RF": "8:119379157-119381157"
+            },
+            "params": {
+                "identifier": "SAMD12_a"
+            }
+        },
+        {
+            "alleles": {
+                "reference": "(LF)(RU1){60}(RU2){61}(RU2){73}(RF)",
+                "allele1": "(LF)(RU1){60}(RU2){61}(RU2){73}(RF)",
+                "allele2": "(LF)(RU1){60}(RU2){61}(RU2){73}(RF)"
+            },
+            "sequences": {
+                "RU1": "TTTTA",
+                "RU2": "TTTTA",
+                "LF": "8:119377054-119379054",
+                "RF": "8:119379157-119381157"
+            },
+            "params": {
+                "identifier": "SAMD12_b"
+            }
+        },
+        {
+            "alleles": {
+                "reference": "(LF)(RU1){22}(RU2){100}(RU3){100}(RF)",
+                "allele1": "(LF)(RU1){22}(RU2){100}(RU3){100}(RF)",
+                "allele2": "(LF)(RU1){22}(RU2){100}(RU3){100}(RF)"
+            },
+            "sequences": {
+                "RU1": "TTTTA",
+                "RU2": "TTTCA",
+                "RU3": "TTTTA",
+                "LF": "16:24622760-24624760",
+                "RF": "16:24624850-24626850"
+            },
+            "params": {
+                "identifier": "TNRC6A"
+            }
+        },
+        {
+            "alleles": {
+                "reference": "(LF)(RU1){800}(RU2){192}(RF)",
+                "allele1": "(LF)(RU1){800}(RU2){192}(RF)",
+                "allele2": "(LF)(RU1){800}(RU2){192}(RF)"
+            },
+            "sequences": {
+                "RU1": "TTTTA",
+                "RU2": "TTTCA",
+                "LF": "3:183427975-183429975",
+                "RF": "3:183430010-183432010"
+            },
+            "params": {
+                "identifier": "YEATS2"
+            }
+        },
+        {
+            "alleles": {
+                "reference": "(LF)(RU1){387}(RU2){274}(RF)",
+                "allele1": "(LF)(RU1){387}(RU2){274}(RF)",
+                "allele2": "(LF)(RU1){387}(RU2){274}(RF)"
+            },
+            "sequences": {
+                "RU1": "TTTTA",
+                "RU2": "TTTCA",
+                "LF": "2:96860804-96862804",
+                "RF": "2:96862859-96864859"
+            },
+            "params": {
+                "identifier": "STARD7"
+            }
+        },
+        {
+            "alleles": {
+                "reference": "(LF)(RU1){500}(RU2){1000}(RF)",
+                "allele1": "(LF)(RU1){500}(RU2){1000}(RF)",
+                "allele2": "(LF)(RU1){500}(RU2){1000}(RF)"
+            },
+            "sequences": {
+                "RU1": "TTTTA",
+                "RU2": "TTTCA",
+                "LF": "5:10354458-10356458",
+                "RF": "5:10356523-10358523"
+            },
+            "params": {
+                "identifier": "MARCHF6"
+            }
+        }
+    ],
+    "params": {
+        "reference": "/Users/edolzhenko/projects/common/refs/grch37/human_g1k_v37.fasta"
+    }
+}

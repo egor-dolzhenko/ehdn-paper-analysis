@@ -1,0 +1,13 @@
+{
+    "CCG": {
+        "AnchoredIrrCount": 87,
+        "IrrPairCount": 25,
+        "RegionsWithIrrAnchors": {
+            "2:87141407-87141409": 8,
+            "X:147581581-147582551": 79
+        },
+        "RepeatUnit": "CCG"
+    },
+    "Depth": 7.95643498636816e-05,
+    "ReadLength": 150
+}

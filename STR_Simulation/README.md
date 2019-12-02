@@ -14,6 +14,8 @@ This is a multi-step process:
 2. Get a sample WGS fastq of real data, e.g. from the Polaris Project (GetBackgroundGenome.sh). 
 3. Cut out the STR region from a platinum genome bam file, e.g. Polaris Sample, and concatenate with the STR expansion bam file (). 
 
+
+
 ### Simulation Diagram
 
 ![diagram](https://github.com/Phillip-a-richmond/STR_Analysis/blob/master/STR_Simulation/STR_Simulation_Approaches.png)

@@ -1,0 +1,3 @@
+Gene	PMID || Source	Chrom	Start (0-based)	End (1-based)	Repeat Motif	Pathogenic Lower Bound
+ATXN10	29398703	22	46191234	46191304	ATTCT	280
+FMR1	29398703	X	146993568	146993628	CGG	200

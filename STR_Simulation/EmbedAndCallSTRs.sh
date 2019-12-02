@@ -3,12 +3,12 @@
 #!/bin/bash
 #PBS -A st-wasserww-1
 #PBS -V
-#PBS -N STR_Surgery_STRCall_EHdnOnly
+#PBS -N STR_Surgery_STRCall_STRetch
 #PBS -m bea
 #PBS -M prichmond@cmmt.ubc.ca
-#PBS -l select=1:ncpus=32:mem=140gb
-#PBS -l walltime=50:0:0
-#PBS -J 31-43
+#PBS -l select=1:ncpus=32:mem=150gb
+#PBS -l walltime=32:0:0
+#PBS -J 0-46
 #PBS -o Sim_STR_output^array_index^.txt
 #PBS -e Sim_STR_error^array_index^.txt
 
@@ -76,7 +76,7 @@ do
 	
 	# BAM Surgery
 	## Cut-out, then merge with wild-type and expanded BAMs
-	if [ ! -f ${Gene}_${Size}_Het_EHDN.str_profile.json ]; then
+	if [ ! -f ${Gene}_${Size}_Het.STRs.tsv ]; then
 	echo "Starting BAM Surgery"
 	samtools view -@ $THREADS -hu -L $CUTOUT_BED \
 		$NATIVE_BAM \
@@ -91,18 +91,18 @@ do
 
 	# STR Calling
 	## EHDN
-	echo "Starting EHDN profiling"
-	$EHDN profile \
-		--reads $OUTPUT_BAM \
-		--reference $GENOME_FASTA \
-		--output-prefix ${Gene}_${Size}_Het_EHDN 
-	
+#	echo "Starting EHDN profiling"
+	#$EHDN profile \
+	#	--reads $OUTPUT_BAM \
+	#	--reference $GENOME_FASTA \
+	#	--output-prefix ${Gene}_${Size}_Het_EHDN 
+	#
 	## STRetch
-	#echo "Starting STRetch"
-	#$STRETCH run \
-	#	-p input_regions=$STRETCH_DIR/reference-data/GRCh37.simpleRepeat_period1-6_dedup.sorted.bed \
-	#	$STRETCH_DIR/pipelines/STRetch_wgs_bam_pipeline.groovy \
-	#	$OUTPUT_BAM
+	echo "Starting STRetch"
+	$STRETCH run \
+		-p input_regions=$STRETCH_DIR/reference-data/GRCh37.simpleRepeat_period1-6_dedup.sorted.bed \
+		$STRETCH_DIR/pipelines/STRetch_wgs_bam_pipeline.groovy \
+		$OUTPUT_BAM
 
 	## GangSTR
 #	echo "Starting GangSTR"
@@ -111,7 +111,7 @@ do
 #		--ref $GENOME_FASTA \
 #		--regions $GANGSTR_REGIONS \
 #		--out ${Gene}_${Size}_Het_GangSTR
-
+#
 	## Clean Up
 	rm $OUTPUT_BAM
 	fi

@@ -1,0 +1,2 @@
+Gene	PMID_Source	Chrom_(GRCh37)	Start_(0-based)_(GRCh37)	End_(1-based)_(GRCh37)	Repeat_Motif	Pathogenic_Lower_Bound
+STARD7	31664034	2	96862804	96862859	TGAAA-TAAAAA	387-192
