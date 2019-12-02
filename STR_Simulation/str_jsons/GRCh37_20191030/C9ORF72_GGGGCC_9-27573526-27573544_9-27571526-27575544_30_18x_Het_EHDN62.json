@@ -1,0 +1,18 @@
+{
+    "CCCCGG": {
+        "AnchoredIrrCount": 11,
+        "IrrPairCount": 0,
+        "RegionsWithIrrAnchors": {
+            "9:27573113-27573912": 11
+        },
+        "RegionsWithIrrs": {
+            "11:2906070-2906071": 1,
+            "X:153569935-153569936": 1,
+            "X:153618844-153618848": 2,
+            "X:53652753-53652754": 7
+        },
+        "RepeatUnit": "CCCCGG"
+    },
+    "Depth": 0.000291474250215386,
+    "ReadLength": 150
+}

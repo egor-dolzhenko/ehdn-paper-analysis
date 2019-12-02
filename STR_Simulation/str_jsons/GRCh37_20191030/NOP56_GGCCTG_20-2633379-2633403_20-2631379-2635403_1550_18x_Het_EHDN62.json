@@ -1,0 +1,16 @@
+{
+    "AGGCCC": {
+        "AnchoredIrrCount": 29,
+        "IrrPairCount": 565,
+        "RegionsWithIrrAnchors": {
+            "20:2632976-2633727": 28,
+            "5:145838557-145838558": 1
+        },
+        "RegionsWithIrrs": {
+            "5:145838541-145838624": 1159
+        },
+        "RepeatUnit": "AGGCCC"
+    },
+    "Depth": 0.00101310834547187,
+    "ReadLength": 150
+}

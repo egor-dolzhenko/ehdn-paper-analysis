@@ -1,0 +1,5 @@
+##fileDate=2019-02-14
+##source=variant_simulator
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype"
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	PROBAND
+chr19	13318673	str_13318673_1	C	CAGC	.	.	.	GT	1/1

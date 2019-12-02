@@ -1,0 +1,15 @@
+{
+    "CCCCGCCCCGCG": {
+        "AnchoredIrrCount": 1,
+        "IrrPairCount": 0,
+        "RegionsWithIrrAnchors": {
+            "21:45196151-45196152": 1
+        },
+        "RegionsWithIrrs": {
+            "21:45196311-45196312": 1
+        },
+        "RepeatUnit": "CCCCGCCCCGCG"
+    },
+    "Depth": 0.00111213206883108,
+    "ReadLength": 150
+}

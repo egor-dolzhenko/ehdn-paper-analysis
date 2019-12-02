@@ -1,0 +1,13 @@
+{
+    "AATAG": {
+        "AnchoredIrrCount": 11,
+        "IrrPairCount": 9,
+        "RegionsWithIrrAnchors": {
+            "22:46190792-46191475": 7,
+            "X:9760009-9760014": 4
+        },
+        "RepeatUnit": "AATAG"
+    },
+    "Depth": 0.0007991358034580645,
+    "ReadLength": 150
+}

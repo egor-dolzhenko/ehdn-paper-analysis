@@ -1,0 +1,3 @@
+Gene	PMID || Source	Chrom	Start (0-based)	End (1-based)	Repeat Motif	Pathogenic Lower Bound
+RFC1    30926972        4       39350045        39350099        AAGGG   400
+TAF1    29229810        X       70660413        70660414        CCCTCT  35

@@ -1,0 +1,12 @@
+{
+    "AAG": {
+        "AnchoredIrrCount": 18,
+        "IrrPairCount": 0,
+        "RegionsWithIrrAnchors": {
+            "9:71651771-71652665": 18
+        },
+        "RepeatUnit": "AAG"
+    },
+    "Depth": 3.0090195843483976e-06,
+    "ReadLength": 150
+}

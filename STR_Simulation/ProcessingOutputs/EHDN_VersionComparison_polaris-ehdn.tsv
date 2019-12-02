@@ -1,0 +1,31 @@
+#Gene	chrom	start	end	Pathogenic_Lower_Bound	Motif
+ATXN10	22	46191234	46191304	280	ATTCT
+EHDN_Locus	STR Size (in copies)	Locus Rank	Locus Z-score
+EHDN_Locus:	1280	10	8.280
+EHDN_Locus:	1280	10	8.570
+EHDN_Locus:	280	4	11.380
+EHDN_Locus:	280	4	11.790
+EHDN_Locus:	380	11	7.240
+EHDN_Locus:	380	10	7.500
+EHDN_Motif	STR Size (in copies)	Motif Rank	Motif Z-score
+EHDN_Motif:	1280	3	23.100
+EHDN_Motif:	1280	1	23.930
+EHDN_Motif:	280	13	2.430
+EHDN_Motif:	280	16	2.490
+EHDN_Motif:	380	5	8.610
+EHDN_Motif:	380	5	8.950
+FMR1	X	146993568	146993628	200	CGG
+EHDN_Locus	STR Size (in copies)	Locus Rank	Locus Z-score
+EHDN_Locus:	1200	2	46.060
+EHDN_Locus:	1200	2	47.660
+EHDN_Locus:	200	2	33.630
+EHDN_Locus:	200	2	34.940
+EHDN_Locus:	300	1	41.840
+EHDN_Locus:	300	1	43.390
+EHDN_Motif	STR Size (in copies)	Motif Rank	Motif Z-score
+EHDN_Motif:	1200	1	114.880
+EHDN_Motif:	1200	1	119.040
+EHDN_Motif:	200	5	8.290
+EHDN_Motif:	200	5	8.620
+EHDN_Motif:	300	3	24.830
+EHDN_Motif:	300	2	25.750

@@ -1,0 +1,31 @@
+# Variables
+THREADS=8
+GENE=XYTL1
+
+NATIVE_BAM=/sp2work/RICHMOND/POLARIS/ERR1955529.sorted.bam
+NATIVE_REGION_BAM=ERR1955529.${GENE}.bam
+STR_ANALYSIS_DIR=/sp2work/RICHMOND/STR_Analysis/
+OUTPUT_DIR=$STR_ANALYSIS_DIR/STR_Simulation/FullSimFiles/
+
+CUTOUT_BED=$STR_ANALYSIS_DIR/STR_Simulation/str_bams/
+CUTOUT_BAM=${OUTPUT_DIR}/ERR1955529.${GENE}.cutout.bam
+
+REF_STR_BAM=${STR_ANALYSIS_DIR}/str_bams/AR_Try2/AR_CAG_X-66765158-66765227_X-66763158-66767227_0_25x.sorted.bam
+EXP_STR_BAM=str_bams/AR_Try2/AR_CAG_X-66765158-66765227_X-66763158-66767227_138_25x.sorted.bam
+OUTPUT_BAM=NA12878_AR_Added_het_138_try2.bam
+
+
+
+# Cut out the BAM given the bed file
+samtools view -@ $THREADS -U $CUTOUT_BAM -l $CUTOUT_BED \
+	$NATIVE_BAM \
+	-o $NATIVE_REGION_BAM
+
+exit
+# merge
+samtools merge -r \
+	-@ 3 \
+	$OUTPUT_BAM \
+	$CUTOUT_BAM \
+	$REF_BAM \
+	$EXP_BAM 
