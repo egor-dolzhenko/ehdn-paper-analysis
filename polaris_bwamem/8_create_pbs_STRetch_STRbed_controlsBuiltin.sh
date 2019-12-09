@@ -1,6 +1,6 @@
 # Create pbs scripts to run STRetch on Illumina Polaris cohort
 
-BASEDIR=/wehisan/bioinf/lab_bahlo/users/bennett.ma/projects/EHdn/align_bwamem_polaris
+source config.sh
 
 PBSDIR=$BASEDIR/scripts/pbs/STRetch_STRbed_controlsBuiltin
 

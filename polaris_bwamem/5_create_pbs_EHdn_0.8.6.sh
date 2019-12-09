@@ -1,6 +1,6 @@
 # Create pbs scripts to run EHdn on Illumina Polaris cohort
 
-BASEDIR=/wehisan/bioinf/lab_bahlo/users/bennett.ma/projects/EHdn/align_bwamem_polaris
+source config.sh
 
 PBSDIR=$BASEDIR/scripts/pbs/EHdn_0.8.6
 

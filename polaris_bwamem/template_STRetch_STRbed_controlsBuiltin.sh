@@ -4,20 +4,17 @@
 #PBS -l mem=40gb
 #PBS -l walltime=20:00:00
 
-#PBS -m ae
-#PBS -M bennett.ma@wehi.edu.au
-
 BAM=__BAM__
 
-BASEDIR=/wehisan/bioinf/lab_bahlo/users/bennett.ma/projects/EHdn/align_bwamem_polaris
+source config.sh
 
 OUTDIR=$BASEDIR/REtool_results/STRetch_STRbed_controlsBuiltin/__COHORT__
 
-# ---------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
-STRETCH_DIR=/wehisan/bioinf/lab_bahlo/users/bennett.ma/projects/EHdn/align_bwamem_polaris/bin/STRetch
+STRETCH_DIR=$BASEDIR/bin/STRetch
 
-# ---------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 BASE=$(basename $BAM ".bam")
 
@@ -29,6 +26,6 @@ cd $WORK_DIR
 
 
 # Run STRetch
-$STRETCH_DIR/tools/bin/bpipe run -p input_regions=$STRETCH_DIR/reference-data/GRCh37.simpleRepeat_period1-6_dedup.sorted.bed /wehisan/bioinf/lab_bahlo/users/bennett.ma/projects/EHdn/align_bwamem_polaris/scripts/STRetch_pipeline_STRbed_controlsBuiltin.groovy $BAM
+$STRETCH_DIR/tools/bin/bpipe run -p input_regions=$STRETCH_DIR/reference-data/GRCh37.simpleRepeat_period1-6_dedup.sorted.bed $BASEDIR/scripts/STRetch_pipeline_STRbed_controlsBuiltin.groovy $BAM
 
 
