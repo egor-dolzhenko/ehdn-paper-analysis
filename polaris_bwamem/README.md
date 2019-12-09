@@ -2,9 +2,16 @@
 
 Scripts include hardcoded paths for WEHI HPC
 
-Results copied to ehdn-paper-data/ on Box
+Script `1_setup_software_reference.sh` downloads reference genome and installs software tools
 
-Script `1_setup_software_reference.sh` installs (some) software tools and downloads reference genome
+Majority of the remaining scripts generate pbs scripts ready for submission to HPC cluster which then need to be submitted.
 
-Remain scripts generate pbs scripts for submission to WEHI HPC cluster
+Local configuration settings must be updated in `config.sh`, including:
+- paths for analysis base directory
+- location of downloaded bam files for Polaris cohorts
+- loading particular software (eg `module load XXXX`)
 
+`BASEDIR` should also be modified in to match value in `config.sh` inside 
+`STRetch_pipeline_STRbed_controlsBuiltin.groovy`
+
+Scripts contained this directory are assumed to be copied to $BASEDIR/scripts

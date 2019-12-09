@@ -1,15 +1,14 @@
 # Create pbs scripts to realign Illumina Polaris cohorts using bwamem
 
-BASEDIR=/wehisan/bioinf/lab_bahlo/users/bennett.ma/projects/EHdn/align_bwamem_polaris
+source config.sh
 
 PBSDIR=$BASEDIR/scripts/pbs/bwamem_realign
-
 TEMPLATE=$BASEDIR/scripts/template_bwamem_realign.sh
 
 # Diversity cohort
 mkdir -p $PBSDIR/diversity
 echo "cd $PBSDIR/diversity" > $PBSDIR/diversity_submit.sh
-for BAM in $(ls $BASEDIR/bam_isaac/diversity/*.bam)
+for BAM in $(ls $DIVERSITY_BAMDIR/*.bam)
 do
     BASE=$(basename $BAM ".bam")
     
@@ -23,7 +22,7 @@ done
 # Create pbs scripts to run RepeatExpansions cohort
 mkdir -p $PBSDIR/repeatexpansions
 echo "cd $PBSDIR/repeatexpansions" > $PBSDIR/repeatexpansions_submit.sh
-for BAM in $(ls $BASEDIR/bam_isaac/repeatexpansions/*.bam)
+for BAM in $(ls $REPEATEXP_BAMDIR/*.bam)
 do
     BASE=$(basename $BAM ".bam")
     

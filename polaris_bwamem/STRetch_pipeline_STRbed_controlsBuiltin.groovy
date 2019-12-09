@@ -1,14 +1,17 @@
 // Bpipe pipeline to detect pathogenic STR expansions from whole genome sequencing data
 // Takes a mapped bam as input and extracts relevant reads for remapping to STR decoys
 
+BASEDIR = "/...path/to/.../ehdn-paper-analysis/polaris_bwamem"
+
+
 // Load system configuration and other settings
-load '/wehisan/bioinf/lab_bahlo/users/bennett.ma/projects/EHdn/align_bwamem_polaris/bin/STRetch/pipelines/pipeline_config.groovy'
+load "$BASEDIR/bin/STRetch/pipelines/pipeline_config.groovy"
 
 // *** Modify default configuration settings ***
-CONTROL="/wehisan/bioinf/lab_bahlo/users/bennett.ma/projects/EHdn/align_bwamem_polaris/bin/STRetch/reference-data/hg19.PCRfreeWGS_143_STRetch_controls.tsv"
+CONTROL="$BASEDIR/bin/STRetch/reference-data/hg19.PCRfreeWGS_143_STRetch_controls.tsv"
 
 // Load Bpipe pipeline stages
-load '/wehisan/bioinf/lab_bahlo/users/bennett.ma/projects/EHdn/align_bwamem_polaris/bin/STRetch/pipelines/pipeline_stages.groovy'
+load "$BASEDIR/bin/STRetch/pipelines/pipeline_stages.groovy"
 
 if(args.any { it.endsWith('.cram') })
     input_type = 'cram'
