@@ -29,7 +29,7 @@ NATIVE_BAM=/project/st-wasserww-1/POLARIS/ERR2304597_GRCh37.sorted.bam
 STR_ANALYSIS_DIR=/scratch/st-wasserww-1/STR_Analysis/
 
 # CHANGE THIS: Where do you want the simulation to occur. Set this to a directory with ample disk space, since each simulated/cut-out-and-replaced BAM is roughly 60G
-OUTPUT_DIR=/scratch/st-wasserww-1/STR_SIM/
+OUTPUT_DIR=/scratch/st-wasserww-1/STR_SIM/PathoSmall
 mkdir -p $OUTPUT_DIR
 cd $OUTPUT_DIR
 
@@ -91,17 +91,6 @@ do
 	# STR Calling
 	## EHDN
 	echo "Starting EHDN profiling"
-	$EHDN080 profile \
-		--reads $OUTPUT_BAM \
-		--reference $GENOME_FASTA \
-		--output-prefix ${Gene}_${Size}_Het_EHDN080_MAPQ40 
-
-	$EHDN080 profile \
-		--reads $OUTPUT_BAM \
-		--reference $GENOME_FASTA \
-		--max-irr-mapq 60 \
-		--output-prefix ${Gene}_${Size}_Het_EHDN080_MAPQ60 
-
 	$EHDN086 profile \
 		--reads $OUTPUT_BAM \
 		--reference $GENOME_FASTA \

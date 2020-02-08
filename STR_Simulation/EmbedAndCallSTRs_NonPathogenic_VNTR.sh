@@ -81,42 +81,42 @@ samtools index $OUTPUT_BAM
       # STR Calling
       ## EHDN
       echo "Starting EHDN profiling"
-$EHDN080 profile \
-      	--reads $OUTPUT_BAM \
-      	--reference $GENOME_FASTA \
-      	--output-prefix ${Gene}_${Size}_Het_EHDN080_MAPQ40 
+#$EHDN080 profile \
+#      	--reads $OUTPUT_BAM \
+#      	--reference $GENOME_FASTA \
+#      	--output-prefix ${Gene}_${Size}_Het_EHDN080_MAPQ40 
+#
+#$EHDN080 profile \
+#      	--reads $OUTPUT_BAM \
+#      	--reference $GENOME_FASTA \
+#      	--max-irr-mapq 60 \
+#      	--output-prefix ${Gene}_${Size}_Het_EHDN080_MAPQ60 
+#
+#$EHDN086 profile \
+#      	--reads $OUTPUT_BAM \
+#      	--reference $GENOME_FASTA \
+#      	--output-prefix ${Gene}_${Size}_Het_EHDN086_MAPQ40 
+#
+#$EHDN086 profile \
+#      	--reads $OUTPUT_BAM \
+#      	--reference $GENOME_FASTA \
+#      	--max-irr-mapq 60 \
+#      	--output-prefix ${Gene}_${Size}_Het_EHDN086_MAPQ60 
+#
+### STRetch
+#echo "Starting STRetch"
+#$STRETCH run \
+#      	-p input_regions=$STRETCH_DIR/reference-data/GRCh37.simpleRepeat_period1-6_dedup.sorted.bed \
+#      	$STRETCH_DIR/pipelines/STRetch_wgs_bam_pipeline.groovy \
+#      	$OUTPUT_BAM
 
-$EHDN080 profile \
-      	--reads $OUTPUT_BAM \
-      	--reference $GENOME_FASTA \
-      	--max-irr-mapq 60 \
-      	--output-prefix ${Gene}_${Size}_Het_EHDN080_MAPQ60 
-
-$EHDN086 profile \
-      	--reads $OUTPUT_BAM \
-      	--reference $GENOME_FASTA \
-      	--output-prefix ${Gene}_${Size}_Het_EHDN086_MAPQ40 
-
-$EHDN086 profile \
-      	--reads $OUTPUT_BAM \
-      	--reference $GENOME_FASTA \
-      	--max-irr-mapq 60 \
-      	--output-prefix ${Gene}_${Size}_Het_EHDN086_MAPQ60 
-
-## STRetch
-echo "Starting STRetch"
-$STRETCH run \
-      	-p input_regions=$STRETCH_DIR/reference-data/GRCh37.simpleRepeat_period1-6_dedup.sorted.bed \
-      	$STRETCH_DIR/pipelines/STRetch_wgs_bam_pipeline.groovy \
-      	$OUTPUT_BAM
-
-#      ## GangSTR
-#       echo "Starting GangSTR"
-#       $GANGSTR  \
-#       	--bam $OUTPUT_BAM \
-#       	--ref $GENOME_FASTA \
-#       	--regions $GANGSTR_REGIONS \
-#       	--out ${Gene}_${Size}_Het_GangSTR
+      ## GangSTR
+       echo "Starting GangSTR"
+       $GANGSTR  \
+       	--bam $OUTPUT_BAM \
+       	--ref $GENOME_FASTA \
+       	--regions $GANGSTR_REGIONS \
+       	--out ${Gene}_${Size}_Het_GangSTR
 
       ## Clean Up
       rm $OUTPUT_BAM

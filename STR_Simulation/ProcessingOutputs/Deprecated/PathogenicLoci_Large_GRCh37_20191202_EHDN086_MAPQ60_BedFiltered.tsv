@@ -1,0 +1,2 @@
+#Gene	chrom	start	end	Pathogenic_Lower_Bound	Motif
+GeneID,PathogenicLowerBound,Motif,MotifLength,SimulatedSize,SizeInBP,STR_Tool,Rank,STRrank,Zscore||Pval

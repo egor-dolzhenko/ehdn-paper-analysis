@@ -89,8 +89,10 @@ def ParseSTRetch(stretchInfilename,locus_chrom,locus_start,locus_end,locus_motif
 		start = int(cols[1])
 		end = int(cols[2])
 		motif = cols[4]
+		motifLen = len(motif)
 		pval = cols[8]
 		size = float(cols[10])
+		sizeInBP=motifLen * size
 
 		# Expand the motif to all possible similar motifs
 		AllMotifs = MotifToPossibleMotifs(motif)
@@ -99,14 +101,18 @@ def ParseSTRetch(stretchInfilename,locus_chrom,locus_start,locus_end,locus_motif
 		if (chrom==locus_chrom) or (chrom==('chr'+locus_chrom)):
 			#print(chrom,locus_chrom)
 			if ( Overlap(start,end,locus_start,locus_end) ):
+				# if there's an N, just take it for granted
+				if 'N' in locus_motif:
+					rank=counter
+					return size,rank,pval
 		# see if the motif is in the possible motifs
 				if locus_motif in AllMotifs:
 					rank=counter
 					#print(size,rank,pval)
 					return size,rank,pval
-	rank = 0
-	size = 0
-	pval = '.'
+	rank = -1
+	size = -1
+	pval = '-1'
 	return size,rank,pval
 
 # This function parses an EHDN tsv output from the outlier script
@@ -218,7 +224,6 @@ def ParseEHDNMotif(ehdnInfilename,locus_motif):
 def ParseTableCollateOutput(strTableFilename,EHdn_Locus_FileList,EHdn_Motif_FileList,STRetch_FileList,outFilename,LowerBoundOnly):
 	outfile = open(outFilename,'w')
 	# write header
-	outfile.write("#Gene\tchrom\tstart\tend\tPathogenic_Lower_Bound\tMotif\n")
 	strfile = open(strTableFilename,'r')
 	
 	# ignore header
@@ -226,7 +231,7 @@ def ParseTableCollateOutput(strTableFilename,EHdn_Locus_FileList,EHdn_Motif_File
 	# Loop through the STR table which we simulated earlier
 	# For each STR, create a bed file, and compare it against the locus file
 	# as well as the motif ranked file
-	outfile.write("GeneID,PathogenicLowerBound,Motif,SimulatedSize,STR_Tool,Rank,Zscore||Pval\n")
+	outfile.write("GeneID,PathogenicLowerBound,Motif,MotifLength,SimulatedSize,SizeInBP,STR_Tool,Rank,STRrank,Zscore||Pval\n")
 	for line in strfile:
 		cols=line.strip('\n').split('\t')
 		gene = cols[0]
@@ -234,9 +239,7 @@ def ParseTableCollateOutput(strTableFilename,EHdn_Locus_FileList,EHdn_Motif_File
 		start = int(cols[3])
 		end = int(cols[4])
 		motif = cols[5]
-		# skip motifs with N
-		if 'N' in motif:
-			continue
+		motifLen = len(motif)
 		pathogenicLowerBound = int(cols[6])
 		
 		# Process EHDN Locus files for matches
@@ -249,6 +252,7 @@ def ParseTableCollateOutput(strTableFilename,EHdn_Locus_FileList,EHdn_Motif_File
 				if '-' in filenamecols[1]:
 					continue
 				file_strsize = int(filenamecols[1])
+				sizeInBP = motifLen * file_strsize
 				# Check to make sure we have the right gene
 				if file_gene != gene:
 					continue
@@ -256,7 +260,7 @@ def ParseTableCollateOutput(strTableFilename,EHdn_Locus_FileList,EHdn_Motif_File
 					if file_strsize != pathogenicLowerBound:
 						continue
 				EHDNLocusRank,EHDNLocusSTRRank,EHDNLocuszscore = ParseEHDNLocus(ehdnlocusfile,chrom,start,end)
-				outfile.write("%s,%d,%s,%d,EHDN_Locus,%d,%d,%.3f\n"%(gene,pathogenicLowerBound,motif,file_strsize,EHDNLocusRank,EHDNLocusSTRRank,EHDNLocuszscore))
+				outfile.write("%s,%d,%s,%d,%d,%d,EHDN_Locus,%d,%d,%.3f\n"%(gene,pathogenicLowerBound,motif,motifLen,file_strsize,sizeInBP,EHDNLocusRank,EHDNLocusSTRRank,EHDNLocuszscore))
 
 		if len(EHdn_Motif_FileList) > 0:
 			for ehdnmotiffile in EHdn_Motif_FileList:
@@ -267,6 +271,7 @@ def ParseTableCollateOutput(strTableFilename,EHdn_Locus_FileList,EHdn_Motif_File
 				if '-' in filenamecols[1]:
 					continue
 				file_strsize = int(filenamecols[1])
+				sizeInBP=motifLen*file_strsize
 				# Check to make sure we have the right gene
 				if file_gene != gene:
 					continue
@@ -274,7 +279,7 @@ def ParseTableCollateOutput(strTableFilename,EHdn_Locus_FileList,EHdn_Motif_File
 					if file_strsize != pathogenicLowerBound:
 						continue
 				EHDNMotifRank,EHDNMotifSTRRank,EHDNMotifzscore = ParseEHDNMotif(ehdnmotiffile,motif)
-				outfile.write("%s,%d,%s,%d,EHDN_Motif,%d,%d,%.3f\n"%(gene,pathogenicLowerBound,motif,file_strsize,EHDNMotifRank,EHDNMotifSTRRank,EHDNMotifzscore))
+				outfile.write("%s,%d,%s,%d,%d,%d,EHDN_Motif,%d,%d,%.3f\n"%(gene,pathogenicLowerBound,motif,motifLen,file_strsize,sizeInBP,EHDNMotifRank,EHDNMotifSTRRank,EHDNMotifzscore))
 
 		if len(STRetch_FileList) > 0:
 			for stretchfile in STRetch_FileList:
@@ -285,6 +290,7 @@ def ParseTableCollateOutput(strTableFilename,EHdn_Locus_FileList,EHdn_Motif_File
 				if '-' in filenamecols[1]:
 					continue
 				file_strsize = int(filenamecols[1])
+				sizeInBP=motifLen*file_strsize
 				# Check to make sure we have the right gene
 				if file_gene != gene:
 					continue
@@ -293,7 +299,7 @@ def ParseTableCollateOutput(strTableFilename,EHdn_Locus_FileList,EHdn_Motif_File
 						continue
 				# Parse STRetch, retrieve size, rank and p-value
 				STRetchSize,STRetchRank,STRetchPval = ParseSTRetch(stretchfile,chrom,start,end,motif)
-				outfile.write("%s,%d,%s,%d,STRetch,%d,%d,%s\n"%(gene,pathogenicLowerBound,motif,file_strsize,STRetchRank,STRetchRank,STRetchPval))
+				outfile.write("%s,%d,%s,%d,%d,%d,STRetch,%d,%d,%s\n"%(gene,pathogenicLowerBound,motif,motifLen,file_strsize,sizeInBP,STRetchRank,STRetchRank,STRetchPval))
 			
 
 # The main function
