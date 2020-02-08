@@ -1,14 +1,12 @@
 # ehdn-paper-analysis
 
-> This is the analysis for the paper: ExpansionHunter DeNovo ______
+> This is the analysis for the paper: ExpansionHunter Denovo ______
 
 ## Subsections
 
 ### Polaris Analysis
 
-
-### Expansion Cohort Analysis
-
+This directory contains scripts to generate pbs scripts to realign Polaris cohorts and run RE methods to compare results.
 
 ### Compare STR Databases
 
