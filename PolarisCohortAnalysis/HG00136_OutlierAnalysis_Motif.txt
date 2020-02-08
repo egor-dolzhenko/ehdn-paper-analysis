@@ -1,0 +1,2 @@
+motif	top_case_zscore	high_case_counts	all_counts
+AAACAGGTCGTGAGGGCGC	1.53	HG00136:2.51	2.51,0.82,0.85,1.65,2.50,0.83,2.48,6.09,1.71,4.95,0.85
